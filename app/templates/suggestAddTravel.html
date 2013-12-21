@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{%block content%}
+<div role='form' id='suggestAdd'>
+<header>
+	<h3 class='text-warning'>Ooopps. Sorry, the places you searched doesn't exist. 
+		Add it to our database, so, netizens can help you to find the best route for it.
+	</h3>
+</header>
+<form class='form' role='form' action='/addTravel' method='post'>
+	<div class='form-group'>
+		<label >Departure Place:</label>
+		<p class='placesLabel'>{{departure}}</p>		
+	</div>	
+	<div class='form-group'>
+		<label>Destination Place:</label>
+		<p class='placesLabel'>{{destination}}</p>
+	</div>
+	<div class='form-group'>
+		<button type='submit' class='btn btn-primary btn-block'><b class='findRoute'>Ask the Netizens</b></button>
+	</div>
+	<a href="/index">
+		<button type='button' class='btn btn-primary btn-block'><b class='findRoute'>Maybe, next time</b></button>
+	</a>
+</form>
+</div>		
+{% endblock %}

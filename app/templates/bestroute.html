@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id='bestroute'>
+<header class='header'>
+
+	<p class='placesLabel'>{{departure}}</p>
+	<p id='toLabel'><em>To</em></p>
+	<p class='placesLabel'>{{destination}}</p>	
+</header>
+
+{% if routes %}
+	<div class='alert alert-info'>
+		<strong>Know better routes? <a href="#" class='shareRoute'>Share</strong></a> it to us!</i>
+	</div>
+	<p><a href="#" class='hideForm'><i class='glyphicon glyphicon-remove'></i></a></p>
+{% else %}
+	<div class='alert alert-info'>
+		<strong>Ooops. No suggested routes found.</strong> <i>Maybe you know how to get there?
+		<a href="#" class='shareRoute'><b>Share</b></a> it to us!<i/>
+	</div>
+	<p><a href="#" class='hideForm'><i class='glyphicon glyphicon-remove'></i></a></p>
+{% endif %}
+
+<form role='form' method='post' action ='/bestroute' name='bestroute' id='addRoute'>
+{{ form.hidden_tag() }}
+<div class='form-group'>
+{{form.suggested_route(placeholder = 'Enter instructions by line', class='form-control', rows='8')}}
+		{% for error in form.errors.suggested_route %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}
+</div>
+<div class='form-group'>
+	<button type='submit' class='btn btn-primary addRouteButton'>Add Route</button>
+	<br/>
+</div>
+</form>
+
+{% if routes %}
+
+<label>Suggested routes:</label>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="alert alert-danger">
+ 
+    {% for msg in messages %}
+    <span>{{ msg }}</span>
+    {% endfor %}
+  
+</div>
+{% endif %}
+{% endwith %}
+
+{% for route in routes%}
+	<div class='panel panel-default'>
+	<div class='panel-heading'>
+		<form method="get" action='/recommend/{{route.id}}'>
+			<button class='recommend btn btn-info' data-id="{{route.id}}"><b>{{route.count_votes}}</b> people recommend this route</button>
+	</div>
+	<div class='panel-body'>
+		{% autoescape false %}
+			{{route.instruction.replace('\n', '<br />')}}
+		{% endautoescape %}
+	</div>
+		</form>
+	</div>	
+		<!-- <div style="width:600px;border:1px solid #666666; height: auto;padding:5px;margin-top:3px;">
+		<form method="get" action='/recommend/{{route.id}}'>
+			<a href="/recommend/{{route.id}}">	<button class='recommend' data-id="{{route.id}}">{{route.count_votes}}Recommend</button> </a><br>
+				{{route.instruction}}
+		</form>
+		</div> -->
+	{% endfor %}
+{% endif %}
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	$('#addRoute').hide();
+	$('.hideForm').hide();
+
+	$('.shareRoute').click(function(){
+		$('#addRoute').show();
+		$('.hideForm').show();
+	});
+
+	$('.hideForm').click(function(){
+		$('#addRoute').hide();
+		$('.hideForm').hide();
+	});
+});
+</script>
+</div>
+{% endblock %}

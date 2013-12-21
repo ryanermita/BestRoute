@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br/>
+<br/>
+<br/>
+<div>
+<header>
+<h1>Travels</h1>
+</header>
+{% for i in routes%}
+	{{i.departure_place}} <br/>
+		To <br/>
+	{{i.destination_place}}
+	{{i.routes}}
+	<hr>
+{%endfor%}
+</div>
+
+
+{% endblock %}

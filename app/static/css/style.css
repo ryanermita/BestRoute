@@ -1,0 +1,48 @@
+body{
+	background: url('../img/map_background.jpg') no-repeat center center fixed;
+	background-size: cover;
+}
+input[type='text'],input[type='password'],input[type='email']{
+	font-size: 20px;
+}
+.findRoute, .signInButton, .sigUpButton{
+	font-size: 20px;
+}
+.header{
+	text-align: center;
+}
+#searchForm, #suggestAdd, #bestroute, .login, .signup{
+	width: 630px;
+	margin: 150px auto;
+}
+#bestroute{
+	margin: 80px auto;
+}
+.placesLabel{
+	font-size: 25px; 
+}
+#suggestAdd, #searchForm, #bestroute, .login, .signup{
+	padding: 8px 20px 8px 20px;
+	background-color: rgba(255, 255, 255, 0.6);
+}
+#toLabel{
+	font-size: 20px;
+}
+.hideForm{
+	float: right;
+	background-size: 
+}
+#copyright{
+	text-align: center;
+}
+
+#logout{
+	float:right;
+	text-decoration: none;
+}
+.shareRoute, #register{
+	text-decoration: underline;
+}
+.addRouteButton{
+	float: right;
+}

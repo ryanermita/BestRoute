@@ -1,0 +1,9 @@
+departure
+Parañaque City, Metro Manila, Philippines
+Laguna, Calabarzon, Philippines
+Laguna, Calabarzon, Philippines
+
+destination
+Laguna, Calabarzon, Philippines 
+AAP, Aurora Boulevard, Quezon City, Metro Manila, Philippines 
+Yehey! Corporation, Pasig City, Metro Manila, Philippines 

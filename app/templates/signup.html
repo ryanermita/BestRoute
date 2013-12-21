@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<form class='signup' action='/signup' method='post' name='signup'>
+<h1>Sign Up</h1>
+ {{ form.hidden_tag() }}
+	{% if error %}
+	 	<div class='alert alert-danger'>
+			<strong>Ooopps!</strong>
+			{{error}}
+		</div>
+	{% endif %}
+<div class='form-group'>
+	{{form.username(type='text', class='form-control', placeholder='Enter username . . .')}}
+		{% for error in form.errors.username %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}
+</div>
+<div class='form-group'>
+	{{form.email(type='email', class='form-control', placeholder='Enter email . . .')}}
+		{% for error in form.errors.email %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}
+</div>
+<div class='form-group'>
+	{{form.pwd(type='password', class='form-control', placeholder='Enter password . . .')}}
+		{% for error in form.errors.pwd %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}	
+</div>
+<div class='form-group'>
+	<button type='submit' class='btn btn-primary btn-block'><b class='sigUpButton'>Sign me up</b></button>
+</div>
+</form>		
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form role='form' id='searchForm' action='/index' method='post'>
+<header class='header'>
+	<h1>Welcome to BestRoute!</h1>
+	<h3>We help you to find the easiest way</h3> 
+</header>
+{{ form.hidden_tag() }}
+<div class='form-group'>
+	{{form.departure_place(class='form-control', type='text', placeholder='Enter place of departure . . .')}}
+		{% for error in form.errors.departure_place %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}
+</div>
+<div class='form-group'>
+	{{form.destination_place(class='form-control', type='text', placeholder='Enter place of destination . . .')}}
+		{% for error in form.errors.destination_place %}
+			<div class='alert alert-danger'>
+				<strong>Ooopps!</strong>
+				{{error}}
+			</div>
+		{% endfor %}
+</div>
+<div class='form-group'>
+	<button type='submit' class='btn btn-primary btn-block'><b class='findRoute'>Search for the Best Route</b></button>
+</div>
+</form>		
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script type="text/javascript">
+function initialize() {
+    var from = document.getElementById('departure_place');
+    var to = document.getElementById('destination_place')
+    var options = {componentRestrictions: {country: 'ph'}};
+                 
+    new google.maps.places.Autocomplete(from, options);
+    new google.maps.places.Autocomplete(to,options);
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+{% endblock %}
